@@ -1,0 +1,3 @@
+# Project exclude paths
+/block1-evaluador-expresiones/target/
+/block1-lectura-ficheros-filtrado-stream/target/

@@ -1,0 +1,17 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="block1-expression-evaluator" type="Application" factoryName="Application">
+    <option name="ALTERNATIVE_JRE_PATH" value="openjdk-19" />
+    <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+    <module name="block1-expression-evaluator" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/block1-expression-evaluator" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="org.example.MainApplication" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

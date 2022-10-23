@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/block1-lectura-ficheros-filtrado-stream/pom.xml" />
         <option value="$PROJECT_DIR$/block1-evaluador-expresiones/pom.xml" />
+        <option value="$PROJECT_DIR$/block1-expression-evaluator/pom.xml" />
+        <option value="$PROJECT_DIR$/block1-process-file-and-streams/pom.xml" />
+        <option value="$PROJECT_DIR$/block3-maven-package/pom.xml" />
       </list>
     </option>
   </component>

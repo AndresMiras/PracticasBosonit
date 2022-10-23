@@ -36,6 +36,5 @@ public class Main {
             // Finalmente imprimo el resultado.
             System.out.println(operation);
         });
-
     }
 }

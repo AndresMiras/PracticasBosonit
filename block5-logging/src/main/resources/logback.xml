@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <property name="LOGS" value="src/main/resources/logs" />
+
+    <!--  Este apender muestra por consola todos los niveles de LogLevels por defecto  -->
+    <appender name="Console"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <!--  Establezco un filtro básico para lo que se mostrará por consola, en este caso queremos ver los logs de INFO solamente  -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+
+        <encoder>
+            <!-- Fecha | LogLevel | Hilo | Clase asignada al Logger | Clase desde la cual se hizo Logging | Message -->
+            <pattern>%d{ISO8601} %highlight(%-5level) [%thread] %logger{100} %yellow(%C{1.}) : %msg%n%throwable</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="RollingFileLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${LOGS}/spring-logging.log</file>
+
+        <!--  Establezco el filtro para poder sacar solo los errores y los warnings de tipo ThresholdFilter-->
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+            <level>WARN</level>
+        </filter>
+
+    <!-- <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->
+    <!--     <fileNamePattern>${LOGS}/spring-logging-0%i.log</fileNamePattern>-->
+    <!--     <minIndex>1</minIndex>-->
+    <!--     <maxIndex>5</maxIndex>-->
+    <!-- </rollingPolicy>-->
+
+         <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+             <!-- Se trunca el archivo de log cada día o al superar los 5KB. Guarda la hora el minuto del guardado así como el día mes y año-->
+             <fileNamePattern>${LOGS}/spring-logging-( %d{yyyy-MM-dd  HH-mm} )-%i.log</fileNamePattern>
+             <!-- Tamaño por archivo -->
+             <maxFileSize>5KB</maxFileSize>
+             <maxHistory>5</maxHistory>
+         </rollingPolicy>
+
+        <encoder
+                class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <!-- Fecha | LogLevel | Hilo | Clase desde la cual se hizo Logging | Message -->
+            <Pattern>%d %p [%t] %C{1.} : %m%n</Pattern>
+        </encoder>
+    </appender>
+
+    <!-- LOG por defecto para todos los paquetes a partir del nivel 'INFO' y superiores. -->
+    <root level="info">
+        <appender-ref ref="Console" />
+    </root>
+
+    <!--  Se crea un log para todos los paquetes hasta trace.  -->
+    <logger name="com.logger.repository" level="trace" additivity="false">
+        <appender-ref ref="RollingFileLog" />
+        <appender-ref ref="Console" />
+    </logger>
+
+</configuration>
+
+    <!-- LOG para paquetes 'com.logger' a partir del nivel 'TRACE' y superiores. -->
+<!--    ALL	All levels including custom levels.-->
+<!--    DEBUG	Designates fine-grained informational events that are most useful to debug an application.-->
+<!--    INFO	Designates informational messages that highlight the progress of the application at coarse-grained level.-->
+<!--    WARN	Designates potentially harmful situations.-->
+<!--    ERROR	Designates error events that might still allow the application to continue running.-->
+<!--    FATAL	Designates very severe error events that will presumably lead the application to abort.-->
+<!--    OFF	The highest possible rank and is intended to turn off logging.-->
+<!--    TRACE	Designates finer-grained informational events than the DEBUG.-->
+
+<!--        Secciones del archivo logback-spring.xml:-->
+<!--        property: Aquí se definen valores que se pueden repetir a lo largo del archivo .xml y en lugar de copiar/pegar dicho valor en todas las partes necesarias se utiliza una propiedad para hacer referencia a dicho valor. Así si el valor cambia solo tendremos que cambiarlo en dicha propiedad sin tener que ir buscando por todo el archivo la cadena correspondiente a modificar.-->
+
+<!--        appender: Los appender sirven para declarar las 'salidas' de nuestros logs.-->
+<!--        Se pueden configurar uno o más appenders para mostrar logs por consola o para que se escriban en un archivo. También se define el formato del mensaje y otra opciones como por ejemplo el truncado de nuestros archivos de logs cada cierto tiempo o al llegar a un tamaño en disco determinado.-->
+
+<!--        root: En esta sección se configura el Logging por defecto de nuestra aplicación para cualquier paquete o clase.-->
+<!--        Aquí es donde se utilizan los 'appenders' declarados previamente, para indicar cuales serán las salidas de nuestros logs por defecto.-->
+<!--        En nuestro archivo .xml hemos definido que por defecto cualquier log que se haga debe salir solo por la consola.-->
+<!--        Podríamos haber definido que se guardasen también en un archivo utilizando el appender 'RollingFile' o incluso declarar otro appender para guardarlos en otro archivo distinto y utilizar ambos para guardar los logs en 2 archivos distintos.-->
+<!--        Se pueden utilizar tantos appenders como nos hagan falta según nuestras necesidades.-->
+<!--        En la propiedad 'level' se indica el nivel de log a partir del cual se mostrarán los mensajes. En nuestro ejemplo solo se mostrarán los mensajes a partir del level 'info' y posteriores (no se mostrarán los logs con level 'trace' o 'debug').-->
+
+<!--        logger: Esta sección sirve para configurar el Logging al igual que en la sección root pero solo para los Loggers que pertenezcan a un paquete y clase específicos.-->
+<!--        En el parámetro 'name' se indica el paquete y/o clase correspondiente.-->
+<!--        A continuación se indican los appenders que utilizarán los Loggers de dicho paquete y/o clase.-->
+<!--        En nuestro arhivo .xml hemos definido que los mensajes de log de todas las clases que pertenezcan al paquete 'net.atopecode' (y descendientes) se escriban por consola y en archivo de disco.-->
+<!--        En la propiedad 'level' se indica el nivel de log a partir del cual se mostrarán los mensajes. En nuestro ejemplo se muestran todos los niveles de logging ya que hemos indicado el level 'trace' y posteriores.-->

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="block5-logging" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.loggerApp.LoggerApp" />
+    <module name="block5-logging" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/block5-logging" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -21,6 +21,9 @@ public class LoggerApp implements CommandLineRunner {
 	// Se ha creado un logger básico con su clase loggerBack y un archivo logback.xml de configuración.
 	// Está configurado para un máximo de 5 archivos "log" con la capacidad de 5KB.
 	// Además registra logs por cada minuto.
+	// Actualmente tenemos dos filtros, uno para sacar todo menos el level ERROR por consola.
+	// Los ERRORs se cargan el el archivo de logs.
+
 	@Autowired
 	@Qualifier("loggerBack")
 	private ILogger log;

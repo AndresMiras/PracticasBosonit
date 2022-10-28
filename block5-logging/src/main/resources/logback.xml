@@ -7,11 +7,11 @@
     <appender name="Console"
               class="ch.qos.logback.core.ConsoleAppender">
 
-        <!--  Establezco un filtro básico para lo que se mostrará por consola, en este caso queremos ver los logs de INFO solamente  -->
+        <!--  Establezco un filtro básico para lo que se mostrará por consola, en este caso queremos ver todos los niveles menos el ERROR  -->
         <filter class="ch.qos.logback.classic.filter.LevelFilter">
-            <level>INFO</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
         </filter>
 
         <encoder>
@@ -27,7 +27,7 @@
         <!--  Establezco el filtro para poder sacar solo los errores y los warnings de tipo ThresholdFilter-->
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
             <level>ERROR</level>
-            <level>WARN</level>
+<!--            <level>WARN</level>-->
         </filter>
 
     <!-- <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">-->

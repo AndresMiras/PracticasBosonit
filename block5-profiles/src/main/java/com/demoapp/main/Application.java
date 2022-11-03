@@ -19,6 +19,10 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 	// Exit on CTRL+C
 
+	// También deberíamos poder probar nuestra applicación con las opciones de configuración.
+	// Habilitando en las opciones de "build and run" la opción de lanzamiento "add VM Options"
+	// Ahora podremos pasar la configuración: -Dspring.profiles.active=production
+
 @SpringBootApplication
 public class Application {
 

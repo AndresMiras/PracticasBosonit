@@ -40,14 +40,18 @@ public class Controller {
 
         // Dependiendo del parámetro que le pasemos, crea un String con formato JSON, en función de si existe el Bean o no.
         // En caso de no existir devuelve el error.
-        if(bean.equals("bean1")){
-            jsonString = new Gson().toJson(personServiceBean1.getPersonRepo());
-        } else if(bean.equals("bean2")){
-            jsonString = new Gson().toJson(personServiceBean2.getPersonRepo());
-        } else if(bean.equals("bean3")){
-            jsonString = new Gson().toJson(personServiceBean3.getPersonRepo());
-        } else {
-            return new ResponseEntity<>(HttpStatus.FAILED_DEPENDENCY + " Error, not a valid Bean", HttpStatus.FAILED_DEPENDENCY);
+        switch (bean) {
+            case "bean1":
+                jsonString = new Gson().toJson(personServiceBean1.getPersonRepo());
+                break;
+            case "bean2":
+                jsonString = new Gson().toJson(personServiceBean2.getPersonRepo());
+                break;
+            case "bean3":
+                jsonString = new Gson().toJson(personServiceBean3.getPersonRepo());
+                break;
+            default:
+                return new ResponseEntity<>(HttpStatus.FAILED_DEPENDENCY + " Error, not a valid Bean", HttpStatus.FAILED_DEPENDENCY);
         }
 
         log.info("Sending object Person: " + jsonString);

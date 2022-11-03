@@ -74,7 +74,7 @@
 <!--    OFF	The highest possible rank and is intended to turn off logging.-->
 <!--    TRACE	Designates finer-grained informational events than the DEBUG.-->
 
-<!--        Secciones del archivo logback-spring.xml:-->
+<!--        Secciones del archivo logback.xml:-->
 <!--        property: Aquí se definen valores que se pueden repetir a lo largo del archivo .xml y en lugar de copiar/pegar dicho valor en todas las partes necesarias se utiliza una propiedad para hacer referencia a dicho valor. Así si el valor cambia solo tendremos que cambiarlo en dicha propiedad sin tener que ir buscando por todo el archivo la cadena correspondiente a modificar.-->
 
 <!--        appender: Los appender sirven para declarar las 'salidas' de nuestros logs.-->

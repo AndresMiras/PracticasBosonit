@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="block7-crud" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.example.block7crud.Block7CrudApplication" />
+    <module name="block7-crud" />
+    <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/block7-crud" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.io.FileNotFoundException;
 
 @Slf4j
@@ -22,7 +21,6 @@ public class UserControllerCrud {
     // http://localhost:8080/person/14
     @GetMapping(value="/{id}")
     public PersonEntity getPersonbyId(@PathVariable Long id) throws FileNotFoundException {
-        log.info(String.valueOf(id));
         return personServ.getPersonById(id);
     }
 
@@ -41,7 +39,7 @@ public class UserControllerCrud {
 
     // http://localhost:8080/person/update
     @PutMapping(value="/update")
-    public PersonEntity updateUser(@Valid @RequestBody PersonEntity person) throws Exception {
+    public PersonEntity updateUser( @RequestBody PersonEntity person) throws Exception {
 
         try {
             //Si el usuario no existe se lanza excepcion.

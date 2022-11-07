@@ -28,12 +28,12 @@ public class PersonServiceImp implements IPersonService {
 
     @Override
     public PersonEntity getPersonById(Long id) throws FileNotFoundException {
-        return personRepo.findById(id).orElseThrow(() -> new FileNotFoundException("Update User Failed "));
+        return personRepo.findById(id).orElseThrow(() -> new FileNotFoundException("Error FileNotFoundException... Person not found with Id: " + id));
     }
 
     @Override
     public PersonEntity getPersonByName(String name) throws FileNotFoundException {
-        return personRepo.findByName(name).orElseThrow(() -> new FileNotFoundException("Update User Failed "));
+        return personRepo.findByName(name).orElseThrow(() -> new FileNotFoundException("Error FileNotFoundException... Person not found with Name: " + name));
     }
 
     @Override

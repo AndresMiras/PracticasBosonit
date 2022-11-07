@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
 @Data
@@ -22,7 +21,7 @@ public class PersonEntity implements Serializable {
     private Long id;
 
     @Column(name="name")
-    @NotEmpty(message = "Person Entity field is blank, not allow.")
+    @NotBlank(message = "Person Entity field is blank, not allow.")
     @NonNull
     @Min(value = 4)
     @Max(value = 13)

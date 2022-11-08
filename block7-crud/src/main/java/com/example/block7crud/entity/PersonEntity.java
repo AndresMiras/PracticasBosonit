@@ -4,9 +4,7 @@ import lombok.*;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 
 @Data
@@ -21,17 +19,19 @@ public class PersonEntity implements Serializable {
     private Long id;
 
     @Column(name="name")
-    @NotBlank(message = "Person Entity field is blank, not allow.")
+    @NotBlank(message = "Name is mandatory")
     @NonNull
-    @Min(value = 4)
-    @Max(value = 13)
+    @NotNull
+    @Size(min = 4, message = "Wrong address, should have a length greater than 4")
+    @Size(max = 13, message = "Wrong address, should have a length greater than 13")
     private String name;
 
     @Column(name="address")
-    @NotBlank(message = "Person Entity field is blank, not allow.")
+    @NotBlank(message = "Address is mandatory")
     @NonNull
-    @Min(value = 4)
-    @Max(value = 25)
+    @NotNull
+    @Size(min = 4, message = "Wrong address, should have a length greater than 4")
+    @Size(max = 25, message = "Wrong address, should have a length greater than 25")
     private String address;
 
     public PersonEntity(Long id, String name, String address) {

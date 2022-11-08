@@ -10,6 +10,7 @@ public class Compare {
     public static int countChars(String str, String wantedChar){
         return (int) str.chars().filter(ch -> ch == wantedChar.getBytes(StandardCharsets.US_ASCII)[0]).count();
     }
+
     public static boolean isNumber(String str){
         try {
             Integer.parseInt(str);
@@ -18,7 +19,6 @@ public class Compare {
             return false;
         }
     }
-
 
     public static boolean isAsciiPrintable(String str) {
         boolean flat = true;

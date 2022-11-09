@@ -52,12 +52,11 @@ public class UserControllerCrud {
     public ResponseEntity<PersonEntity> updateUser(@Valid @RequestBody PersonEntity person, BindingResult br) {
         // looking for entity errors with BindingResult.
         if(br.hasErrors()) throw new ConstraintDefinitionException(br.getAllErrors().get(0).getDefaultMessage());
-        log.info(String.valueOf(br.hasErrors()));
 
         try {
-            //If Person doesn't exist, throw a new exception.
+            // If Person doesn't exist, throw a new exception.
             personServ.getPersonById(person.getId());
-            //Si existe y los campos no son blanks o nulls, el usuario se actualiza.
+            // If the user exists and fields aren't blanks or nulls, the user get the update.
             personServ.updateUser(person);
             log.info("Person update success!: " + person);
         } catch (IndexOutOfBoundsException userNotFound) {

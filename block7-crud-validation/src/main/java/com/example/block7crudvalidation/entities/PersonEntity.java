@@ -1,5 +1,6 @@
 package com.example.block7crudvalidation.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @Entity
 @Table(name = "person")
 @NoArgsConstructor
+@AllArgsConstructor
 public class PersonEntity implements Serializable {
 
     @Id
@@ -50,17 +52,5 @@ public class PersonEntity implements Serializable {
     private Date termination_date;
 
     @Column(name="imagen_url")
-    private Boolean imagen_url;
-
-    public PersonEntity(Long id, String name, String address) {
-        this.id = id;
-        this.name = name;
-        this.address = address;
-    }
-
-    public PersonEntity(PersonEntity user) {
-        this.id = user.getId();
-        this.name = user.getName();
-        this.address = user.getAddress();
-    }
+    private String imagen_url;
 }

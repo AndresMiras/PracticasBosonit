@@ -1,13 +1,15 @@
 package com.example.block7crudvalidation.service;
 
 import com.example.block7crudvalidation.entities.PersonEntity;
-import com.example.block7crudvalidation.helper.Compare;
-import com.example.block7crudvalidation.helper.MyDate;
+import helper.Compare;
+import helper.MyDate;
 import com.example.block7crudvalidation.repository.IPersonRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 
+import javax.persistence.EntityNotFoundException;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Objects;
@@ -24,19 +26,18 @@ public class PersonServiceImp implements IPersonService {
     }
 
     @Override
-    public PersonEntity updatePerson(PersonEntity person) throws SecurityException {
-        personRepo.save(person);
-        return person;
+    public PersonEntity updatePerson(PersonEntity person) {
+        return personRepo.save(person);
     }
 
     @Override
-    public PersonEntity getPersonById(Long id) throws FileNotFoundException {
-        return personRepo.findById(id).orElseThrow(() -> new FileNotFoundException("Error FileNotFoundException... Person not found with Id: " + id));
+    public PersonEntity getPersonById(Long id) throws EntityNotFoundException {
+        return personRepo.findById(id).orElseThrow(() -> new EntityNotFoundException("Error EntityNotFoundException... Person not found with Id: " + id));
     }
 
     @Override
-    public PersonEntity getPersonByName(String name) throws FileNotFoundException {
-        return personRepo.findByName(name).orElseThrow(() -> new FileNotFoundException("Error FileNotFoundException... Person not found with Name: " + name));
+    public List<PersonEntity> getPersonByName(String name) throws EntityNotFoundException {
+        return personRepo.findByName(name).orElseThrow(() -> new EntityNotFoundException("Error EntityNotFoundException... Person not found with Name: " + name));
     }
 
     @Override

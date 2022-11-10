@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonDTO implements Serializable {
+public class PersonSimpleDTO implements Serializable {
 
     private Long id;
     private String completeName;
@@ -19,7 +19,7 @@ public class PersonDTO implements Serializable {
     private String city;
     private String imagen_url;
 
-    public PersonDTO(PersonEntity personEntity) {
+    public PersonSimpleDTO(PersonEntity personEntity) {
         this.id = personEntity.getId();
         this.completeName = personEntity.getName() + " " + personEntity.getSurname();
         this.company_email = personEntity.getCompany_email();

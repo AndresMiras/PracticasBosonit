@@ -1,4 +1,4 @@
-package com.example.block7crudvalidation.dto;
+package com.example.block7crudvalidation.person.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonEntityDTO implements Serializable {
+public class PersonDTOEntity implements Serializable {
 
     private Long id;
 

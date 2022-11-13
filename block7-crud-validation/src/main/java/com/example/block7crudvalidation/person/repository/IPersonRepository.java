@@ -1,7 +1,6 @@
-package com.example.block7crudvalidation.repository;
+package com.example.block7crudvalidation.person.repository;
 
-import com.example.block7crudvalidation.entities.PersonEntity;
-import org.springframework.data.jpa.repository.Query;
+import com.example.block7crudvalidation.person.entities.PersonEntity;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

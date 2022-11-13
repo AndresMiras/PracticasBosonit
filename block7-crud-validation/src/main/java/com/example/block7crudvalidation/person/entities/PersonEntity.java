@@ -1,4 +1,4 @@
-package com.example.block7crudvalidation.entities;
+package com.example.block7crudvalidation.person.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

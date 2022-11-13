@@ -1,6 +1,6 @@
-package com.example.block7crudvalidation.dto;
+package com.example.block7crudvalidation.person.dto;
 
-import com.example.block7crudvalidation.entities.PersonEntity;
+import com.example.block7crudvalidation.person.entities.PersonEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonSimpleDTO implements Serializable {
+public class PersonDTOResponse implements Serializable {
 
     private Long id;
     private String completeName;
@@ -19,12 +19,21 @@ public class PersonSimpleDTO implements Serializable {
     private String city;
     private String imagen_url;
 
-    public PersonSimpleDTO(PersonEntity personEntity) {
+    public PersonDTOResponse(PersonEntity personEntity) {
         this.id = personEntity.getId();
         this.completeName = personEntity.getName() + " " + personEntity.getSurname();
         this.company_email = personEntity.getCompany_email();
         this.address = personEntity.getAddress();
         this.city = personEntity.getCity();
         this.imagen_url = personEntity.getImagen_url();
+    }
+
+    public PersonDTOResponse(Long id, String name, String surname, String company_email, String address, String city, String imagen_url) {
+        this.id = id;
+        this.completeName = name + " " + surname;
+        this.company_email = company_email;
+        this.address = address;
+        this.city = city;
+        this.imagen_url = imagen_url;
     }
 }

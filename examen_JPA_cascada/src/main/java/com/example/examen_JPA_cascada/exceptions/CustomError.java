@@ -1,4 +1,4 @@
-package com.example.block7crudvalidation.exceptions;
+package com.example.examen_JPA_cascada.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;

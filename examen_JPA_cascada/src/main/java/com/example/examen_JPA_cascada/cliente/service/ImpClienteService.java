@@ -1,7 +1,8 @@
 package com.example.examen_JPA_cascada.cliente.service;
 
-import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClientDTO;
-import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClientDTOResponse;
+import com.example.examen_JPA_cascada.cliente.entity.Cliente;
+import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClienteInputDTO;
+import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClienteOutputDTO;
 import com.example.examen_JPA_cascada.exceptions.EntityNotFoundException;
 import com.example.examen_JPA_cascada.cliente.infraestructure.repository.ClienteRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -16,9 +17,11 @@ public class ImpClienteService implements IClienteService {
     private ClienteRepository clienteRepository;
 
     @Override
-    public void createCliente(ClientDTO clientDTO) {
-        clienteRepository.save(clientDTO.getEntity());
-        log.info("Cliente con id:" + clientDTO.getId() + " Creado con éxito!");
+    public ClienteOutputDTO createCliente(ClienteInputDTO clienteInputDTO) {
+        Cliente cliente = new Cliente(clienteInputDTO.getId(), clienteInputDTO.getNombre());
+        ClienteOutputDTO clienteOutputDTO = new ClienteOutputDTO(clienteRepository.save(cliente));
+        log.info("Cliente con id:" + clienteInputDTO.getId() + " Creado con éxito!");
+        return clienteOutputDTO;
     }
 
     @Override
@@ -32,7 +35,7 @@ public class ImpClienteService implements IClienteService {
     }
 
     @Override
-    public ClientDTOResponse getClienteById(int id) {
-        return new ClientDTOResponse(clienteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found")));
+    public ClienteOutputDTO getClienteById(int id) {
+        return new ClienteOutputDTO(clienteRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Client not found")));
     }
 }

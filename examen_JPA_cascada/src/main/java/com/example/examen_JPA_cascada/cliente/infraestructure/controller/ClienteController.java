@@ -1,7 +1,7 @@
 package com.example.examen_JPA_cascada.cliente.infraestructure.controller;
 
 
-import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClientDTO;
+import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClienteInputDTO;
 import com.example.examen_JPA_cascada.exceptions.CustomError;
 import com.example.examen_JPA_cascada.cliente.service.IClienteService;
 import com.example.examen_JPA_cascada.lineaFra.service.ILineasFraService;
@@ -26,8 +26,8 @@ public class ClienteController {
 
 
     @PostMapping(value = "/cliente/insert")
-    public ResponseEntity<Object> clienteInsert(@Valid @RequestBody ClientDTO clientDTO) {
-        impClienteService.createCliente(clientDTO);
+    public ResponseEntity<Object> clienteInsert(@Valid @RequestBody ClienteInputDTO clienteInputDTO) {
+        impClienteService.createCliente(clienteInputDTO);
         return ResponseEntity.status(201).body(CustomError.build(201, "Cliente creado, success"));
     }
 }

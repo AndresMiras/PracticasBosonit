@@ -1,22 +1,17 @@
 package com.example.examen_JPA_cascada.cabeceraFra.entity;
 
-import com.example.examen_JPA_cascada.cabeceraFra.infraestructure.dto.FacturaOutputDTO;
 import com.example.examen_JPA_cascada.cliente.entity.Cliente;
-import com.example.examen_JPA_cascada.lineaFra.infraestructure.dto.LineaOutputDto;
-import com.example.examen_JPA_cascada.lineaFra.model.LineaFra;
-import lombok.AllArgsConstructor;
+import com.example.examen_JPA_cascada.lineaFra.entity.LineaFra;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 @Entity
 @Table(name = "CabeceraFra")
 @NoArgsConstructor
-@AllArgsConstructor
 public class CabeceraFra {
 
     @Id
@@ -35,6 +30,7 @@ public class CabeceraFra {
 
     // Una factura tiene muchas líneas y muchas líneas tienen una sola factura.
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "lineas_fra")
     private List<LineaFra> lineasFra;
 
     public CabeceraFra(int id, double importeFra, Cliente cliente) {
@@ -43,15 +39,17 @@ public class CabeceraFra {
         this.cliente = cliente;
     }
 
+    public CabeceraFra(int id, double importeFra, Cliente cliente, List<LineaFra> lineasFra) {
+        this.id = id;
+        this.importeFra = importeFra;
+        this.cliente = cliente;
+        this.lineasFra = lineasFra;
+    }
+
     public CabeceraFra(int id, double importeFra, List<LineaFra> lineasFra) {
         this.id = id;
         this.importeFra = importeFra;
         this.lineasFra = lineasFra;
-    }
-
-    public FacturaOutputDTO getFacturaOutputDTO() {
-
-        return new FacturaOutputDTO(id, importeFra, cliente.getClientDTOResponse(), lineasFra.stream().map(lineaFra -> lineaFra.getLineaOutputDto()).collect(Collectors.toList()));
     }
 
 }

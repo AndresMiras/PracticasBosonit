@@ -1,6 +1,5 @@
 package com.example.examen_JPA_cascada.cliente.entity;
 
-import com.example.examen_JPA_cascada.cliente.infraestructure.dto.ClientDTOResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +23,4 @@ public class Cliente implements Serializable {
     private String nombre;
 
     // Un cliente tiene varias facturas y una factura tiene una sola entidad.
-
-    public ClientDTOResponse getClientDTOResponse() {
-        return new ClientDTOResponse(id, nombre);
-    }
 }

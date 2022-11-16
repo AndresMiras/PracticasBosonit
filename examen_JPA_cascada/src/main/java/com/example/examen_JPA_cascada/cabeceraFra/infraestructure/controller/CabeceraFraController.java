@@ -2,7 +2,7 @@ package com.example.examen_JPA_cascada.cabeceraFra.infraestructure.controller;
 
 import com.example.examen_JPA_cascada.cabeceraFra.service.ICabeceraFraService;
 import com.example.examen_JPA_cascada.exceptions.CustomError;
-import com.example.examen_JPA_cascada.cabeceraFra.infraestructure.dto.CabeceraFraDTO;
+import com.example.examen_JPA_cascada.cabeceraFra.infraestructure.dto.CabeceraInputDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +19,8 @@ public class CabeceraFraController {
     private ICabeceraFraService impCabeceraFraService;
 
     @PostMapping(value = "/cabecera/insert")
-    public ResponseEntity<Object> clienteInsert(CabeceraFraDTO cabeceraFraDTO) {
-        impCabeceraFraService.createCabeceraFra(cabeceraFraDTO);
+    public ResponseEntity<Object> clienteInsert(CabeceraInputDTO cabeceraInputDTO) {
+        impCabeceraFraService.createCabeceraFra(cabeceraInputDTO);
         return ResponseEntity.status(201).body(CustomError.build(201, "Cliente creado, success" ));
     }
 

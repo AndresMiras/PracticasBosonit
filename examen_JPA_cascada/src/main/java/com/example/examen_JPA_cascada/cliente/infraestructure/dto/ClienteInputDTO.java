@@ -8,13 +8,10 @@ import java.io.Serializable;
 
 @Getter
 @AllArgsConstructor
-public class ClientDTO implements Serializable {
+public class ClienteInputDTO implements Serializable {
 
     private int id;
 
     private String nombre;
 
-    public Cliente getEntity() {
-        return new Cliente(id, nombre);
-    }
 }

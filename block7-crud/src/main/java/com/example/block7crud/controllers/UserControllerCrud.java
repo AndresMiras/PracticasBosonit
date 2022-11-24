@@ -25,6 +25,7 @@ public class UserControllerCrud {
     // http://localhost:8080/person/14
     @GetMapping(value="/{id}")
     public PersonEntity getPersonById(@Valid @PathVariable Long id) throws FileNotFoundException {
+
         return personServ.getPersonById(id);
     }
 

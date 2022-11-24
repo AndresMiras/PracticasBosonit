@@ -2,10 +2,14 @@ package com.example.block7crudvalidation.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class CustomError {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private Date timestamp;
@@ -68,6 +72,8 @@ public class CustomError {
                 return new CustomError(HttpStatus.CREATED, "The request was successful and a new resource was created as a result. : ( " + message + " )");
             case(204):
                 return new CustomError(HttpStatus.NO_CONTENT, "The request has been completed successfully but your response has no content. : ( " + message + " )");
+            case(205):
+                return new CustomError(HttpStatus.RESET_CONTENT, "The request has been completed successfully. Please, refresh your browser: ( " + message + " )");
             case(400):
                 return new CustomError(HttpStatus.BAD_REQUEST, "The server could not interpret the request due to invalid syntax. : ( " + message + " )");
             case(404):

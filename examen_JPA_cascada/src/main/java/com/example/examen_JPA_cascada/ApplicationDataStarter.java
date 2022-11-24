@@ -58,7 +58,7 @@ public class ApplicationDataStarter implements CommandLineRunner {
         // Los paso a la identidad.
         CabeceraFra cabeceraFra = cabeceraInputDTO.getEntity();
 
-        // Visión global de las
+        // Visión global de las facturas.
         log.info("Esta es mi cabecera: " + cabeceraFra.toString());
 
         // Creo la factura, con su cabecera y sus líneas.

@@ -1,8 +1,8 @@
-package com.example.block7crudvalidation.person.controllers;
+package com.example.block7crudvalidation.person.infraestructure.controllers;
 
-import com.example.block7crudvalidation.person.dto.PersonDTORequest;
+import com.example.block7crudvalidation.person.infraestructure.dto.PersonDTORequest;
 import com.example.block7crudvalidation.exceptions.CustomError;
-import com.example.block7crudvalidation.person.service.IPersonService;
+import com.example.block7crudvalidation.person.service.PersonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,16 +15,21 @@ import org.springframework.web.bind.annotation.*;
 @Component
 @RestController
 @RequestMapping(value = "/person")
-public class UserControllerCrud {
+public class PersonController {
 
     @Autowired
-    private IPersonService personServ;
+    private PersonService personServ;
 
     // http://localhost:8080/person/14
     // The method returns a refined personDTO object that contains only non-sensitive information. If the person doesn't exist throw error.
     @GetMapping(value = "/{id}")
     public ResponseEntity<Object> getPersonById(@PathVariable Long id) {
         return ResponseEntity.ok().body(CustomError.buildWithObject(200, "Person found, success.", personServ.getPersonById(id)));
+    }
+
+    @GetMapping(value = "/full/{id}")
+    public ResponseEntity<Object> getFullPersonById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(CustomError.buildWithObject(200, "Person found, success.", personServ.getFullPersonById(id)));
     }
 
     // http://localhost:8080/person/name/Edwin
@@ -38,6 +43,7 @@ public class UserControllerCrud {
     // This method try to create one person.
     @PostMapping(value = "/insert")
     public ResponseEntity<Object> insertPerson(@RequestBody PersonDTORequest person) {
+        log.info(person.toString());
        personServ.createPerson(person);
        return ResponseEntity.status(201).body(CustomError.build(201,"Person created, Success!"));
     }
@@ -53,7 +59,7 @@ public class UserControllerCrud {
     }
 
     // http://localhost:8080/person/delete/14
-    @DeleteMapping(value = "/delete/{id}")
+    @DeleteMapping(value = "/{id}")
     public ResponseEntity<Object> deletePerson(@PathVariable Long id) {
         personServ.deletePerson(id);
         return ResponseEntity.status(202).body("Delete Person success: Id: " + id);
